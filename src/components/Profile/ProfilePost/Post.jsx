@@ -2,28 +2,7 @@ import React from "react";
 import PostItem from "./PostItem/PostItem";
 import classes from "./Post.module.css";
 
-const Post = () => {
-  let profilePage = {
-    postData: [
-      {
-        id: 1,
-        messages: "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        like: 3,
-      },
-      {
-        id: 2,
-        messages:
-          "Dolores repudiandae aspernatur quasi, tenetur nam vitae? Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-        like: 5,
-      },
-      {
-        id: 3,
-        messages: "Lorem ipsum dolor sit amet consectetur.",
-        like: 16,
-      },
-    ],
-    newPostText: "Hello World!",
-  };
+const Post = ({ profilePage }) => {
 
   const addPost = () => {
     const newPost = {

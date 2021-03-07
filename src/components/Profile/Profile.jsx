@@ -4,14 +4,14 @@ import ProfilePost from "./ProfilePost/Post";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileBg from "./ProfileBg/ProfileBg";
 
-const Profile = () => {
+const Profile = ({ profilePage }) => {
   return (
     <div>
       <ProfileBg />
 
       <ProfileInfo />
 
-      <ProfilePost />
+      <ProfilePost profilePage={profilePage} />
     </div>
   );
 };

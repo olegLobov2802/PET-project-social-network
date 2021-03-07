@@ -8,12 +8,12 @@ import Music from "./components/Music/Music";
 import Setting from "./components/Setting/Setting";
 import { Switch, Route } from "react-router-dom";
 
-function App() {
+function App({ state }) {
   return (
     <div className='container'>
       <div className='wrapper'>
         <Header />
-        <Navbar />
+        <Navbar sidebar={state.sidebar} />
         <div className='app-column'>
           <div className='app-column__wrapper'>
             {/* <Route path='/profile' component={Profile} />
@@ -23,8 +23,8 @@ function App() {
                 <Route path='/setting' component={Setting} /> */}
 
             <Switch>
-              <Route path='/profile' render={() => <Profile />} />
-              <Route path='/dialogs' render={() => <Dialogs />} />
+              <Route path='/profile' render={() => <Profile profilePage={state.profilePage} />} />
+              <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage} />} />
               <Route path='/news' render={() => <News />} />
               <Route path='/music' render={() => <Music />} />
               <Route path='/setting' render={() => <Setting />} />

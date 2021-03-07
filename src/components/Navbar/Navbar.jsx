@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
-import Friends from "./Friends/Friends";
+import Frends from "./Frends/Frends";
 
-const Navbar = () => {
+const Navbar = ({ sidebar }) => {
   return (
     <div className={classes.navbar}>
       <div className={classes.navbar__column}>
@@ -52,7 +52,7 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <Friends />
+        <Frends sidebar={sidebar} />
       </div>
     </div>
   );
