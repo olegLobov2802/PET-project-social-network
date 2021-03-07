@@ -1,0 +1,17 @@
+.header {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  padding: 10px;
+}
+
+.header__row {
+  height: 60px;
+  padding: 10px;
+  background-color: #edeef0;
+  -webkit-box-shadow: 1px 0px 9px 2px rgba(0, 0, 0, 0.18);
+  box-shadow: 1px 0px 9px 2px rgba(0, 0, 0, 0.18);
+}
+
+.header__logo {
+  height: 100%;
+}

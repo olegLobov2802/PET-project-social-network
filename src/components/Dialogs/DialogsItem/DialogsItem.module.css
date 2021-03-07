@@ -1,0 +1,19 @@
+.users {
+  flex-basis: 20%;
+  background-color: #fff;
+  padding: 10px;
+  -webkit-box-shadow: 1px 0px 9px 2px rgba(0, 0, 0, 0.18);
+  box-shadow: 1px 0px 9px 2px rgba(0, 0, 0, 0.18);
+}
+
+.users__item {
+  list-style-type: none;
+  padding: 10px;
+}
+.users__item a {
+  text-decoration: none;
+}
+
+.users__item .users__active {
+  color: rgb(0, 81, 255);
+}
