@@ -1,3 +1,7 @@
+let render = () => {
+  console.log('no change')
+}
+
 let state = {
   dialogsPage: {
     dialogsData: [
@@ -78,4 +82,25 @@ let state = {
   },
 };
 
+export const addPost = () => {
+  const newPost = {
+    id: 5,
+    messages: state.profilePage.newPostText,
+    like: 0,
+  };
+
+  state.profilePage.postData.push(newPost);
+  state.profilePage.newPostText = ''
+  render()
+};
+
+export const updateNewPostText = (text) => {
+  state.profilePage.newPostText = text;
+  render()
+};
+
 export default state;
+
+export const subscribe = (observer) => {
+  render = observer
+}

@@ -2,22 +2,15 @@ import React from "react";
 import PostItem from "./PostItem/PostItem";
 import classes from "./Post.module.css";
 
-const Post = ({ profilePage }) => {
-
-  const addPost = () => {
-    const newPost = {
-      id: 5,
-      messages: profilePage.newPostText,
-      like: 0,
-    };
-
-    profilePage.postData.push(newPost);
+const Post = ({ profilePage, addPost, updateNewPostText }) => {
+  let onAddPost = () => {
+    addPost()
   };
 
-  const updateNewPostText = (e) => {
-    const text = e.target.value;
-    profilePage.newPostText = text;
-  };
+  let onPostChange = (e) => {
+    let text = e.target.value
+    updateNewPostText(text)
+  }
 
   let postsElements = profilePage.postData.map((post) => (
     <PostItem message={post.messages} like={post.like} />
@@ -31,9 +24,9 @@ const Post = ({ profilePage }) => {
           className={classes.post__input}
           type='text'
           value={profilePage.newPostText}
-          onChange={updateNewPostText}
+          onChange={onPostChange}
         />
-        <button onClick={addPost} className={classes.post__btn}>
+        <button onClick={onAddPost} className={classes.post__btn}>
           Send
         </button>
       </div>

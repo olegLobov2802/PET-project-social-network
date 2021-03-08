@@ -17,7 +17,7 @@ const Navbar = ({ sidebar }) => {
                 Profile
               </NavLink>
             </li>
-            <li class={classes.navbar__item}>
+            <li className={classes.navbar__item}>
               <NavLink
                 to='/dialogs'
                 activeClassName={classes.activeLink}
@@ -25,7 +25,7 @@ const Navbar = ({ sidebar }) => {
                 Messages
               </NavLink>
             </li>
-            <li class={classes.navbar__item}>
+            <li className={classes.navbar__item}>
               <NavLink
                 to='/news'
                 activeClassName={classes.activeLink}
@@ -33,7 +33,7 @@ const Navbar = ({ sidebar }) => {
                 News
               </NavLink>
             </li>
-            <li class={classes.navbar__item}>
+            <li className={classes.navbar__item}>
               <NavLink
                 to='/music'
                 activeClassName={classes.activeLink}
@@ -41,7 +41,7 @@ const Navbar = ({ sidebar }) => {
                 Music
               </NavLink>
             </li>
-            <li class={classes.navbar__item}>
+            <li className={classes.navbar__item}>
               <NavLink
                 to='/setting'
                 activeClassName={classes.activeLink}

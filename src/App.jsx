@@ -8,7 +8,7 @@ import Music from "./components/Music/Music";
 import Setting from "./components/Setting/Setting";
 import { Switch, Route } from "react-router-dom";
 
-function App({ state }) {
+function App({ state, addPost, updateNewPostText }) {
   return (
     <div className='container'>
       <div className='wrapper'>
@@ -23,7 +23,10 @@ function App({ state }) {
                 <Route path='/setting' component={Setting} /> */}
 
             <Switch>
-              <Route path='/profile' render={() => <Profile profilePage={state.profilePage} />} />
+              <Route
+                path='/profile'
+                render={() => <Profile profilePage={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText} />}
+              />
               <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage} />} />
               <Route path='/news' render={() => <News />} />
               <Route path='/music' render={() => <Music />} />
