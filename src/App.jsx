@@ -8,7 +8,7 @@ import Music from "./components/Music/Music";
 import Setting from "./components/Setting/Setting";
 import { Switch, Route } from "react-router-dom";
 
-function App({ state, addPost, updateNewPostText }) {
+function App({ state, dispatch}) {
   return (
     <div className='container'>
       <div className='wrapper'>
@@ -19,7 +19,7 @@ function App({ state, addPost, updateNewPostText }) {
             <Switch>
               <Route
                 path='/profile'
-                render={() => <Profile profilePage={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText} />}
+                render={() => <Profile profilePage={state.profilePage} dispatch={dispatch} />}
               />
               <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage} />} />
               <Route path='/news' render={() => <News />} />

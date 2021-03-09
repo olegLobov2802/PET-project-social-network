@@ -79,8 +79,16 @@ let store = {
     },
   },
 
+  _render() {
+    console.log("no change");
+  },
+
   getState() {
     return this._state;
+  },
+
+  subscribe(observer) {
+    this._render = observer;
   },
 
   addPost() {
@@ -100,15 +108,24 @@ let store = {
     this.render();
   },
 
-  subscribe(observer) {
-    this.render = observer;
-  },
+  dispatch(action) {
+    if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.profilePage.newPostText = action.text;
+      this._render();
+    } else if (action.type === "ADD-POST") {
+      const newPost = {
+        id: Math.random(),
+        messages: this._state.profilePage.newPostText,
+        like: 0,
+      };
 
-  render() {
-    console.log("no change");
+      this._state.profilePage.postData.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._render();
+    }
   },
 };
 
 window.store = store;
 
-export default store
+export default store;

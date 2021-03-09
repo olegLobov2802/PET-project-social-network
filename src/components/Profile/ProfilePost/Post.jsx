@@ -2,14 +2,14 @@ import React from "react";
 import PostItem from "./PostItem/PostItem";
 import classes from "./Post.module.css";
 
-const Post = ({ profilePage, addPost, updateNewPostText }) => {
+const Post = ({ profilePage, dispatch }) => {
   let onAddPost = () => {
-    addPost()
+    dispatch({type: "ADD-POST"})
   };
 
   let onPostChange = (e) => {
     let text = e.target.value
-    updateNewPostText(text)
+    dispatch({type: "UPDATE-NEW-POST-TEXT", text: text})
   }
 
   let postsElements = profilePage.postData.map((post) => (
