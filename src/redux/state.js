@@ -1,5 +1,7 @@
 const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+const UPDATE_MESSAGE_TEXT = "UPDATE_MESSAGE_TEXT";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
 let store = {
   _state: {
@@ -108,12 +110,26 @@ let store = {
       this._state.profilePage.postData.push(newPost);
       this._state.profilePage.newPostText = "";
       this._render();
+    } else if (action.type === UPDATE_MESSAGE_TEXT) {
+      this._state.dialogsPage.newMessageText = action.text;
+      this._render();
+    } else if (action.type === SEND_MESSAGE) {
+      const newMessage = {
+        id: Math.random(),
+        messages: this._state.dialogsPage.newMessageText,
+      };
+
+      this._state.dialogsPage.messagesData.push(newMessage);
+      this._state.dialogsPage.newMessageText = "";
+      this._render();
     }
   },
 };
 
-export const updateNewPostTextAC = (text) => ({type: UPDATE_NEW_POST_TEXT, text: text});
+export const updateNewPostTextAC = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const addPostAC = () => ({ type: ADD_POST });
+export const updateNewMessageTextAC = (text) => ({type: UPDATE_MESSAGE_TEXT, text})
+export const sendMessageAC = () => ({type: SEND_MESSAGE})
 
 window.store = store;
 

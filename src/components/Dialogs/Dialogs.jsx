@@ -1,22 +1,17 @@
 import React from "react";
+import { sendMessageAC, updateNewMessageTextAC } from "../../redux/state";
 import classes from "./Dialogs.module.css";
 import DialogsItemName from "./DialogsItem/DialogsItemName";
 import MessageItem from "./MessageItem/MessageItem";
 
-const Dialogs = ({ dialogsPage }) => {
-
+const Dialogs = ({ dialogsPage, dispatch }) => {
   const addMessage = () => {
-    const newMessage = {
-      id: 5,
-      messages: dialogsPage.newMessageText,
-    };
-
-    dialogsPage.messagesData.push(newMessage);
+    dispatch(sendMessageAC())
   };
 
   const onMessageChange = (e) => {
     const text = e.target.value;
-    dialogsPage.newMessageText = text;
+    dispatch(updateNewMessageTextAC(text))
   };
 
   let dialogElementsName = dialogsPage.dialogsData.map((dialog) => (

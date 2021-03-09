@@ -21,7 +21,7 @@ function App({ state, dispatch}) {
                 path='/profile'
                 render={() => <Profile profilePage={state.profilePage} dispatch={dispatch} />}
               />
-              <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage} />} />
+              <Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage} dispatch={dispatch} />} />
               <Route path='/news' render={() => <News />} />
               <Route path='/music' render={() => <Music />} />
               <Route path='/setting' render={() => <Setting />} />
