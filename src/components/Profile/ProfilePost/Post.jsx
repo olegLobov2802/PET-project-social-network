@@ -1,15 +1,16 @@
 import React from "react";
 import PostItem from "./PostItem/PostItem";
 import classes from "./Post.module.css";
+import { addPostAC, updateNewPostTextAC } from "../../../redux/state";
 
 const Post = ({ profilePage, dispatch }) => {
   let onAddPost = () => {
-    dispatch({type: "ADD-POST"})
+    dispatch(addPostAC())
   };
 
   let onPostChange = (e) => {
     let text = e.target.value
-    dispatch({type: "UPDATE-NEW-POST-TEXT", text: text})
+    dispatch(updateNewPostTextAC(text))
   }
 
   let postsElements = profilePage.postData.map((post) => (

@@ -1,3 +1,6 @@
+const ADD_POST = "ADD_POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+
 let store = {
   _state: {
     dialogsPage: {
@@ -91,28 +94,11 @@ let store = {
     this._render = observer;
   },
 
-  addPost() {
-    const newPost = {
-      id: Math.random(),
-      messages: this._state.profilePage.newPostText,
-      like: 0,
-    };
-
-    this._state.profilePage.postData.push(newPost);
-    this._state.profilePage.newPostText = "";
-    this.render();
-  },
-
-  updateNewPostText(text) {
-    this._state.profilePage.newPostText = text;
-    this.render();
-  },
-
   dispatch(action) {
-    if (action.type === "UPDATE-NEW-POST-TEXT") {
+    if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.text;
       this._render();
-    } else if (action.type === "ADD-POST") {
+    } else if (action.type === ADD_POST) {
       const newPost = {
         id: Math.random(),
         messages: this._state.profilePage.newPostText,
@@ -125,6 +111,9 @@ let store = {
     }
   },
 };
+
+export const updateNewPostTextAC = (text) => ({type: UPDATE_NEW_POST_TEXT, text: text});
+export const addPostAC = () => ({ type: ADD_POST });
 
 window.store = store;
 
