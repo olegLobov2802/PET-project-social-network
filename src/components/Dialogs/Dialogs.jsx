@@ -20,11 +20,11 @@ const Dialogs = ({ dialogsPage }) => {
   };
 
   let dialogElementsName = dialogsPage.dialogsData.map((dialog) => (
-    <DialogsItemName name={dialog.name} id={dialog.id} />
+    <DialogsItemName key={dialog.id} name={dialog.name} id={dialog.id} />
   ));
 
   let messagesElements = dialogsPage.messagesData.map((message) => (
-    <MessageItem text={message.messages} />
+    <MessageItem key={message.id} text={message.messages} />
   ));
 
   return (

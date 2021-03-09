@@ -1,106 +1,114 @@
-let render = () => {
-  console.log('no change')
-}
+let store = {
+  _state: {
+    dialogsPage: {
+      dialogsData: [
+        { id: 1, name: "Oleg" },
+        { id: 2, name: "Anna" },
+        { id: 3, name: "Denis" },
+        { id: 4, name: "Sergey" },
+        { id: 5, name: "Valera" },
+      ],
 
-let state = {
-  dialogsPage: {
-    dialogsData: [
-      { id: 1, name: "Oleg" },
-      { id: 2, name: "Anna" },
-      { id: 3, name: "Denis" },
-      { id: 4, name: "Sergey" },
-      { id: 5, name: "Valera" },
-    ],
+      messagesData: [
+        {
+          id: 1,
+          messages: "Lorem ipsum dolor sit amet consectetur adipisicing.",
+        },
+        {
+          id: 2,
+          messages: "Amet lorem ipsum dolor sit consectetur adipisicing.",
+        },
+        {
+          id: 3,
+          messages: "Ipsum lorem dolor sit amet consectetur adipisicing.",
+        },
+        {
+          id: 4,
+          messages: "Dolor lorem ipsum sit amet consectetur adipisicing.",
+        },
+        {
+          id: 5,
+          messages: "Consectetur lorem ipsum dolor sit amet adipisicing.",
+        },
+      ],
 
-    messagesData: [
-      {
-        id: 1,
-        messages: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-      },
-      {
-        id: 2,
-        messages: "Amet lorem ipsum dolor sit consectetur adipisicing.",
-      },
-      {
-        id: 3,
-        messages: "Ipsum lorem dolor sit amet consectetur adipisicing.",
-      },
-      {
-        id: 4,
-        messages: "Dolor lorem ipsum sit amet consectetur adipisicing.",
-      },
-      {
-        id: 5,
-        messages: "Consectetur lorem ipsum dolor sit amet adipisicing.",
-      },
-    ],
+      newMessageText: "Hello World!",
+    },
 
-    newMessageText: "Hello World!",
+    profilePage: {
+      postData: [
+        {
+          id: 1,
+          messages: "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          like: 3,
+        },
+        {
+          id: 2,
+          messages:
+            "Dolores repudiandae aspernatur quasi, tenetur nam vitae? Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+          like: 5,
+        },
+        {
+          id: 3,
+          messages: "Lorem ipsum dolor sit amet consectetur.",
+          like: 16,
+        },
+      ],
+      newPostText: "Hello World!",
+    },
+
+    sidebar: {
+      frends: [
+        {
+          id: 1,
+          name: "Oleg",
+        },
+        {
+          id: 2,
+          name: "Anna",
+        },
+        {
+          id: 3,
+          name: "Denis",
+        },
+        {
+          id: 4,
+          name: "Sergey",
+        },
+      ],
+    },
   },
 
-  profilePage: {
-    postData: [
-      {
-        id: 1,
-        messages: "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        like: 3,
-      },
-      {
-        id: 2,
-        messages:
-          "Dolores repudiandae aspernatur quasi, tenetur nam vitae? Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-        like: 5,
-      },
-      {
-        id: 3,
-        messages: "Lorem ipsum dolor sit amet consectetur.",
-        like: 16,
-      },
-    ],
-    newPostText: "Hello World!",
+  getState() {
+    return this._state;
   },
 
-  sidebar: {
-    frends: [
-      {
-        id: 1,
-        name: "Oleg",
-      },
-      {
-        id: 2,
-        name: "Anna",
-      },
-      {
-        id: 3,
-        name: "Denis",
-      },
-      {
-        id: 4,
-        name: "Sergey",
-      },
-    ],
+  addPost() {
+    const newPost = {
+      id: Math.random(),
+      messages: this._state.profilePage.newPostText,
+      like: 0,
+    };
+
+    this._state.profilePage.postData.push(newPost);
+    this._state.profilePage.newPostText = "";
+    this.render();
+  },
+
+  updateNewPostText(text) {
+    this._state.profilePage.newPostText = text;
+    this.render();
+  },
+
+  subscribe(observer) {
+    this.render = observer;
+  },
+
+  render() {
+    console.log("no change");
   },
 };
 
-export const addPost = () => {
-  const newPost = {
-    id: 5,
-    messages: state.profilePage.newPostText,
-    like: 0,
-  };
+window.store = store;
 
-  state.profilePage.postData.push(newPost);
-  state.profilePage.newPostText = ''
-  render()
-};
-
-export const updateNewPostText = (text) => {
-  state.profilePage.newPostText = text;
-  render()
-};
-
-export default state;
-
-export const subscribe = (observer) => {
-  render = observer
-}
+export default store

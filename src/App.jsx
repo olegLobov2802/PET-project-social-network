@@ -16,12 +16,6 @@ function App({ state, addPost, updateNewPostText }) {
         <Navbar sidebar={state.sidebar} />
         <div className='app-column'>
           <div className='app-column__wrapper'>
-            {/* <Route path='/profile' component={Profile} />
-                <Route path='/dialogs' component={Dialogs} />
-                <Route path='/news' component={News} />
-                <Route path='/music' component={Music} />
-                <Route path='/setting' component={Setting} /> */}
-
             <Switch>
               <Route
                 path='/profile'

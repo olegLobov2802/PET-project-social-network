@@ -13,7 +13,7 @@ const Post = ({ profilePage, addPost, updateNewPostText }) => {
   }
 
   let postsElements = profilePage.postData.map((post) => (
-    <PostItem message={post.messages} like={post.like} />
+    <PostItem key={post.id} message={post.messages} like={post.like} />
   ));
 
   return (

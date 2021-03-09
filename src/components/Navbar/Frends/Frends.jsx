@@ -3,7 +3,7 @@ import classes from "./Frends.module.css";
 import FrendsItem from "./FrendsItem/FrendsItem";
 
 const Frends = ({ sidebar }) => {
-  let frendsElements = sidebar.frends.map((item) => <FrendsItem name={item.name} />);
+  let frendsElements = sidebar.frends.map((item) => <FrendsItem key={item.id} name={item.name} />);
 
   return (
     <div className={classes.frends}>
