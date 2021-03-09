@@ -1,7 +1,7 @@
 import React from "react";
 import PostItem from "./PostItem/PostItem";
 import classes from "./Post.module.css";
-import { addPostAC, updateNewPostTextAC } from "../../../redux/state";
+import { addPostAC, updateNewPostTextAC } from "../../../redux/profileReducer";
 
 const Post = ({ profilePage, dispatch }) => {
   let onAddPost = () => {
