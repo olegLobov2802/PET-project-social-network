@@ -19,6 +19,14 @@ const Navbar = () => {
             </li>
             <li className={classes.navbar__item}>
               <NavLink
+                to='/users'
+                activeClassName={classes.activeLink}
+                className={classes.navbar__link}>
+                Users
+              </NavLink>
+            </li>
+            <li className={classes.navbar__item}>
+              <NavLink
                 to='/dialogs'
                 activeClassName={classes.activeLink}
                 className={classes.navbar__link}>
