@@ -2,8 +2,9 @@ import React from "react";
 import classes from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import Frends from "./Frends/Frends";
+import StoreContext from "../../StoreContext";
 
-const Navbar = ({ sidebar }) => {
+const Navbar = () => {
   return (
     <div className={classes.navbar}>
       <div className={classes.navbar__column}>
@@ -51,8 +52,7 @@ const Navbar = ({ sidebar }) => {
             </li>
           </ul>
         </nav>
-
-        <Frends sidebar={sidebar} />
+        <StoreContext.Consumer>{(store) => <Frends sidebar={store.getState().sidebar} />}</StoreContext.Consumer>
       </div>
     </div>
   );

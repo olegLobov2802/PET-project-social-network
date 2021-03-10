@@ -8,17 +8,17 @@ import Setting from "./components/Setting/Setting";
 import { Switch, Route } from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-function App({ store }) {
+function App() {
   return (
     <div className='container'>
       <div className='wrapper'>
         <Header />
-        <Navbar sidebar={store.getState().sidebar} />
+        <Navbar />
         <div className='app-column'>
           <div className='app-column__wrapper'>
             <Switch>
-              <Route path='/profile' render={() => <Profile store={store} />} />
-              <Route path='/dialogs' render={() => <DialogsContainer store={store} />} />
+              <Route path='/profile' render={() => <Profile />} />
+              <Route path='/dialogs' render={() => <DialogsContainer />} />
               <Route path='/news' render={() => <News />} />
               <Route path='/music' render={() => <Music />} />
               <Route path='/setting' render={() => <Setting />} />
