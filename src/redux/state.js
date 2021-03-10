@@ -1,5 +1,6 @@
 import { dialogsReducer } from "./dialogsReducer";
 import { profileReducer } from "./profileReducer";
+import { sidebarReducer } from "./sidebarReducer";
 
 let store = {
   _state: {
@@ -97,6 +98,7 @@ let store = {
   dispatch(action) {
     this.getState().profilePage = profileReducer(this.getState().profilePage, action);
     this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action);
+    this.getState().sidebar = sidebarReducer(this.getState().sidebar, action);
     this._render();
   },
 };
