@@ -1,17 +1,17 @@
 import React from "react";
-import { sendMessageAC, updateNewMessageTextAC } from "../../redux/dialogsReducer";
 import classes from "./Dialogs.module.css";
 import DialogsItemName from "./DialogsItem/DialogsItemName";
 import MessageItem from "./MessageItem/MessageItem";
 
-const Dialogs = ({ dialogsPage, dispatch }) => {
+const Dialogs = ({ onAddMessage, onMessageChange, dialogsPage }) => {
+
   const addMessage = () => {
-    dispatch(sendMessageAC())
+    onAddMessage();
   };
 
-  const onMessageChange = (e) => {
+  const updateNewMessageText = (e) => {
     const text = e.target.value;
-    dispatch(updateNewMessageTextAC(text))
+    onMessageChange(text);
   };
 
   let dialogElementsName = dialogsPage.dialogsData.map((dialog) => (
@@ -33,7 +33,7 @@ const Dialogs = ({ dialogsPage, dispatch }) => {
           className={classes.message__input}
           type='text'
           value={dialogsPage.newMessageText}
-          onChange={onMessageChange}
+          onChange={updateNewMessageText}
         />
         <button onClick={addMessage} className={classes.message__btn}>
           Send

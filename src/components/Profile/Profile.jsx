@@ -1,16 +1,16 @@
 import React from "react";
-import ProfilePost from "./ProfilePost/Post";
+import ProfilePostContainer from "./ProfilePost/ProfilePostContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileBg from "./ProfileBg/ProfileBg";
 
-const Profile = ({ profilePage, dispatch }) => {
+const Profile = ({ profilePage, dispatch, store }) => {
   return (
     <div>
       <ProfileBg />
 
       <ProfileInfo />
 
-      <ProfilePost profilePage={profilePage} dispatch={dispatch} />
+      <ProfilePostContainer store={store} profilePage={profilePage} dispatch={dispatch} />
     </div>
   );
 };

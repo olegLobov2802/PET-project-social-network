@@ -1,21 +1,20 @@
 import React from "react";
 import PostItem from "./PostItem/PostItem";
 import classes from "./Post.module.css";
-import { addPostAC, updateNewPostTextAC } from "../../../redux/profileReducer";
 
-const Post = ({ profilePage, dispatch }) => {
-  let onAddPost = () => {
-    dispatch(addPostAC())
-  };
-
-  let onPostChange = (e) => {
-    let text = e.target.value
-    dispatch(updateNewPostTextAC(text))
-  }
-
+const ProfilePost = ({ onAddPost, onPostChange, profilePage }) => {
   let postsElements = profilePage.postData.map((post) => (
     <PostItem key={post.id} message={post.messages} like={post.like} />
   ));
+
+  let updateNewPostText = (e) => {
+    let text = e.target.value;
+    onPostChange(text)
+  };
+
+  let addPost = () => {
+    onAddPost()
+  };
 
   return (
     <div className={(classes.profile__post, classes.post)}>
@@ -25,9 +24,9 @@ const Post = ({ profilePage, dispatch }) => {
           className={classes.post__input}
           type='text'
           value={profilePage.newPostText}
-          onChange={onPostChange}
+          onChange={updateNewPostText}
         />
-        <button onClick={onAddPost} className={classes.post__btn}>
+        <button onClick={addPost} className={classes.post__btn}>
           Send
         </button>
       </div>
@@ -36,4 +35,4 @@ const Post = ({ profilePage, dispatch }) => {
   );
 };
 
-export default Post;
+export default ProfilePost;
