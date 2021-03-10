@@ -9,11 +9,11 @@ const ProfilePost = ({ onAddPost, onPostChange, profilePage }) => {
 
   let updateNewPostText = (e) => {
     let text = e.target.value;
-    onPostChange(text)
+    onPostChange(text);
   };
 
   let addPost = () => {
-    onAddPost()
+    onAddPost();
   };
 
   return (

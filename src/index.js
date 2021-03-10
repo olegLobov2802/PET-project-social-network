@@ -3,9 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux/reduxStore";
-import { Provider } from "./StoreContext";
+import {Provider} from 'react-redux' 
 
-let render = (store) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
@@ -16,10 +15,5 @@ let render = (store) => {
     </React.StrictMode>,
     document.getElementById("root")
   );
-};
 
-render(store);
 
-store.subscribe(() => {
-  render(store);
-});

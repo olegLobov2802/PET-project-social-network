@@ -26,8 +26,10 @@ let initialState = {
 export let profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.text;
-      return state;
+      return {
+        ...state,
+        newPostText: action.text
+      };
     case ADD_POST:
       const newPost = {
         id: Math.random(),
@@ -35,9 +37,11 @@ export let profileReducer = (state = initialState, action) => {
         like: 0,
       };
 
-      state.postData.push(newPost);
-      state.newPostText = "";
-      return state;
+      return {
+        ...state,
+        postData: [...state.postData, newPost],
+        newPostText: ""
+      };
     default:
       return state;
   }

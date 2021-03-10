@@ -1,8 +1,7 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
-import Frends from "./Frends/Frends";
-import StoreContext from "../../StoreContext";
+import { FrendsContainer } from "./Frends/Frends";
 
 const Navbar = () => {
   return (
@@ -52,7 +51,7 @@ const Navbar = () => {
             </li>
           </ul>
         </nav>
-        <StoreContext.Consumer>{(store) => <Frends sidebar={store.getState().sidebar} />}</StoreContext.Consumer>
+        <FrendsContainer />
       </div>
     </div>
   );

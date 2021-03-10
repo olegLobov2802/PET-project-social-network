@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import classes from "./Frends.module.css";
 import FrendsItem from "./FrendsItem/FrendsItem";
 
@@ -15,4 +16,10 @@ const Frends = ({ sidebar }) => {
   );
 };
 
-export default Frends;
+const mapStateToProps = (state) => {
+  return {
+    sidebar: state.sidebar,
+  };
+};
+
+export const FrendsContainer = connect(mapStateToProps)(Frends);
