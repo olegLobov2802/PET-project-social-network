@@ -2,14 +2,7 @@ import classes from "./Users.module.css";
 import photo from "../../img/logo.png";
 import * as axios from "axios";
 
-const Users = ({ usersData, isFollow, isUnfollow, setUsers }) => {
-
-  if (usersData.length === 0) {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
-      console.log(response.data.items);
-      setUsers(response.data.items)
-    })
-  }
+const Users = ({ usersData, isFollow, isUnfollow }) => {
 
   return (
     <div className={classes.users}>
