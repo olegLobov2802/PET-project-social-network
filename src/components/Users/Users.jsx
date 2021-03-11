@@ -1,12 +1,35 @@
 import classes from "./Users.module.css";
 import photo from "../../img/logo.png";
-import * as axios from "axios";
 
-const Users = ({ usersData, isFollow, isUnfollow }) => {
+const Users = ({
+  usersData,
+  isFollow,
+  isUnfollow,
+  onPageChange,
+  totalUsersCount,
+  usersCount,
+  currentPage,
+}) => {
+  let pagesCount = Math.ceil(totalUsersCount / usersCount);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
+  }
 
   return (
     <div className={classes.users}>
-      {/* <div className={classes.page_lists}></div> */}
+      <div className={classes.page_lists}>
+        {pages.map((item) => (
+          <span
+            key={item}
+            onClick={() => {
+              onPageChange(item);
+            }}
+            className={currentPage === item ? classes.item_active : classes.page_lists__item}>
+            {item}
+          </span>
+        ))}
+      </div>
       {usersData.map((item) => (
         <div className={classes.users__item} key={item.id}>
           <div className={classes.users__follow}>

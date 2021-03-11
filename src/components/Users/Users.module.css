@@ -63,7 +63,7 @@
   text-align: center;
 }
 
-/* .page_lists {
+.page_lists {
   margin: 0 auto;
   text-align: center;
   max-width: 500px;
@@ -78,4 +78,4 @@
 .item_active {
   font-weight: bold;
   padding: 10px;
-} */
+}
