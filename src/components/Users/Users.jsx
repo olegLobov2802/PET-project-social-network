@@ -1,45 +1,14 @@
 import classes from "./Users.module.css";
-import photo from "../../img/photo.jpg";
+import photo from "../../img/logo.png";
+import * as axios from "axios";
 
 const Users = ({ usersData, isFollow, isUnfollow, setUsers }) => {
-  let users = [
-    {
-      id: 1,
-      userName: "Oleg",
-      status: "Hello World",
-      location: {
-        country: "Russia",
-        city: "Abakan",
-      },
-      photo: photo,
-      follow: true,
-    },
-    {
-      id: 2,
-      userName: "Anna",
-      status: "Hello World",
-      location: {
-        country: "Russia",
-        city: "Abakan",
-      },
-      photo: photo,
-      follow: false,
-    },
-    {
-      id: 3,
-      userName: "Dimon",
-      status: "Hello World",
-      location: {
-        country: "Russia",
-        city: "Abakan",
-      },
-      photo: photo,
-      follow: true,
-    },
-  ];
 
   if (usersData.length === 0) {
-    setUsers(users);
+    axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
+      console.log(response.data.items);
+      setUsers(response.data.items)
+    })
   }
 
   return (
@@ -48,8 +17,8 @@ const Users = ({ usersData, isFollow, isUnfollow, setUsers }) => {
       {usersData.map((item) => (
         <div className={classes.users__item} key={item.id}>
           <div className={classes.users__follow}>
-            <img src={photo} alt='' />
-            {item.follow ? (
+            <img src={item.photos.large || photo} alt='' />
+            {item.followed ? (
               <button
                 onClick={() => {
                   isUnfollow(item.id);
@@ -69,12 +38,12 @@ const Users = ({ usersData, isFollow, isUnfollow, setUsers }) => {
           </div>
           <div className={classes.users__info}>
             <div>
-              <div className={classes.info__description}>{item.userName}</div>
+              <div className={classes.info__description}>{item.name}</div>
               <div className={classes.info__description}>{item.status}</div>
             </div>
             <div>
-              <div className={classes.info__description}>{item.location.country}</div>
-              <div className={classes.info__description}>{item.location.city}</div>
+              <div className={classes.info__description}>{"item.location.country"}</div>
+              <div className={classes.info__description}>{"item.location.city"}</div>
             </div>
           </div>
         </div>

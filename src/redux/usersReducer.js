@@ -1,5 +1,3 @@
-import photo from "../img/photo.jpg";
-
 const IS_FOLLOW = "IS_FOLLO";
 const IS_UNFOLLOW = "IS_UNFOLLO";
 const SET_USERS = "SET_USERS";
@@ -8,36 +6,13 @@ let initialState = {
   usersData: [
     // {
     //   id: 1,
-    //   userName: "Oleg",
+    //   name: "Oleg",
     //   status: "Hello World",
-    //   location: {
-    //     country: "Russia",
-    //     city: "Abakan",
+    //   photos: {
+    //     small: null,
+    //     large: photo,
     //   },
-    //   photo: photo,
-    //   follow: true,
-    // },
-    // {
-    //   id: 2,
-    //   userName: "Anna",
-    //   status: "Hello World",
-    //   location: {
-    //     country: "Russia",
-    //     city: "Abakan",
-    //   },
-    //   photo: photo,
-    //   follow: false,
-    // },
-    // {
-    //   id: 3,
-    //   userName: "Dimon",
-    //   status: "Hello World",
-    //   location: {
-    //     country: "Russia",
-    //     city: "Abakan",
-    //   },
-    //   photo: photo,
-    //   follow: true,
+    //   followed: true,
     // },
   ],
 };
@@ -49,7 +24,7 @@ export let usersReducer = (state = initialState, action) => {
         ...state,
         usersData: state.usersData.map((item) => {
           if (item.id === action.id) {
-            return { ...item, follow: true };
+            return { ...item, followed: true };
           }
           return item;
         }),
@@ -59,7 +34,7 @@ export let usersReducer = (state = initialState, action) => {
         ...state,
         usersData: state.usersData.map((item) => {
           if (item.id === action.id) {
-            return { ...item, follow: false };
+            return { ...item, followed: false };
           }
           return item;
         }),
