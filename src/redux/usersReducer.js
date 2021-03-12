@@ -10,7 +10,7 @@ let initialState = {
   totalUsersCount: 0,
   usersCount: 10,
   currentPage: 1,
-  isLoading: false
+  isLoading: false,
 };
 
 export let usersReducer = (state = initialState, action) => {
@@ -60,9 +60,9 @@ export let usersReducer = (state = initialState, action) => {
   }
 };
 
-export const isFollowAC = (id) => ({ type: IS_FOLLOW, id });
-export const isUnfollowAC = (id) => ({ type: IS_UNFOLLOW, id });
-export const setUsersAC = (users) => ({ type: SET_USERS, users });
-export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
-export const totalUsersCountAC = (usersCount) => ({ type: TOTAL_USERS_COUNT, usersCount });
-export const checkIsLoadingAC = (load) => ({ type: IS_LOADING, load });
+export const isFollow = (id) => ({ type: IS_FOLLOW, id });
+export const isUnfollow = (id) => ({ type: IS_UNFOLLOW, id });
+export const setUsers = (users) => ({ type: SET_USERS, users });
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export const setTotalUsersCount = (usersCount) => ({ type: TOTAL_USERS_COUNT, usersCount });
+export const checkIsLoading = (load) => ({ type: IS_LOADING, load });

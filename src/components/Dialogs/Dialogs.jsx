@@ -3,15 +3,10 @@ import classes from "./Dialogs.module.css";
 import DialogsItemName from "./DialogsItem/DialogsItemName";
 import MessageItem from "./MessageItem/MessageItem";
 
-const Dialogs = ({ onAddMessage, onMessageChange, dialogsPage }) => {
-
-  const addMessage = () => {
-    onAddMessage();
-  };
-
-  const updateNewMessageText = (e) => {
+const Dialogs = ({ sendMessage, updateNewMessageText, dialogsPage }) => {
+  const changeMessageText = (e) => {
     const text = e.target.value;
-    onMessageChange(text);
+    updateNewMessageText(text);
   };
 
   let dialogElementsName = dialogsPage.dialogsData.map((dialog) => (
@@ -33,9 +28,13 @@ const Dialogs = ({ onAddMessage, onMessageChange, dialogsPage }) => {
           className={classes.message__input}
           type='text'
           value={dialogsPage.newMessageText}
-          onChange={updateNewMessageText}
+          onChange={changeMessageText}
         />
-        <button onClick={addMessage} className={classes.message__btn}>
+        <button
+          onClick={() => {
+            sendMessage();
+          }}
+          className={classes.message__btn}>
           Send
         </button>
       </div>
