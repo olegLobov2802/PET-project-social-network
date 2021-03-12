@@ -3,12 +3,12 @@ import ProfilePostContainer from "./ProfilePost/ProfilePostContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileBg from "./ProfileBg/ProfileBg";
 
-const Profile = () => {
+const Profile = ({ profile }) => {
   return (
     <div>
       <ProfileBg />
 
-      <ProfileInfo />
+      <ProfileInfo profile={profile} />
 
       <ProfilePostContainer />
     </div>

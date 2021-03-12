@@ -39,3 +39,8 @@
   margin-bottom: 25px;
   font-weight: 600;
 }
+
+.profile__contacts {
+  display: flex;
+  flex-direction: column;
+}
