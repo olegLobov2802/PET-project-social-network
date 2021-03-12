@@ -1,5 +1,6 @@
 import classes from "./Users.module.css";
 import photo from "../../img/logo.png";
+import { NavLink } from "react-router-dom";
 
 const Users = ({
   usersData,
@@ -33,7 +34,9 @@ const Users = ({
       {usersData.map((item) => (
         <div className={classes.users__item} key={item.id}>
           <div className={classes.users__follow}>
-            <img src={item.photos.large || photo} alt='' />
+            <NavLink to={`/profile/${item.id}`} >
+              <img src={item.photos.large || photo} alt='' />
+            </NavLink>
             {item.followed ? (
               <button
                 onClick={() => {

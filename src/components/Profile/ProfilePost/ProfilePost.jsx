@@ -24,7 +24,7 @@ const ProfilePost = ({ addPost, updateNewPostText, profilePage }) => {
         />
         <button
           onClick={() => {
-            addPost()
+            addPost();
           }}
           className={classes.post__btn}>
           Send

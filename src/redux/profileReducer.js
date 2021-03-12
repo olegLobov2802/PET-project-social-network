@@ -1,26 +1,28 @@
 const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+const SET_PROFILE = "SET_PROFILE";
 
 let initialState = {
-    postData: [
-      {
-        id: 1,
-        messages: "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        like: 3,
-      },
-      {
-        id: 2,
-        messages:
-          "Dolores repudiandae aspernatur quasi, tenetur nam vitae? Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-        like: 5,
-      },
-      {
-        id: 3,
-        messages: "Lorem ipsum dolor sit amet consectetur.",
-        like: 16,
-      },
-    ],
-    newPostText: "Hello World!",
+  postData: [
+    {
+      id: 1,
+      messages: "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      like: 3,
+    },
+    {
+      id: 2,
+      messages:
+        "Dolores repudiandae aspernatur quasi, tenetur nam vitae? Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+      like: 5,
+    },
+    {
+      id: 3,
+      messages: "Lorem ipsum dolor sit amet consectetur.",
+      like: 16,
+    },
+  ],
+  newPostText: "Hello World!",
+  profile: null,
 };
 
 export let profileReducer = (state = initialState, action) => {
@@ -28,7 +30,7 @@ export let profileReducer = (state = initialState, action) => {
     case UPDATE_NEW_POST_TEXT:
       return {
         ...state,
-        newPostText: action.text
+        newPostText: action.text,
       };
     case ADD_POST:
       const newPost = {
@@ -40,7 +42,12 @@ export let profileReducer = (state = initialState, action) => {
       return {
         ...state,
         postData: [...state.postData, newPost],
-        newPostText: ""
+        newPostText: "",
+      };
+    case SET_PROFILE:
+      return {
+        ...state,
+        profile: action.profile,
       };
     default:
       return state;
@@ -49,3 +56,4 @@ export let profileReducer = (state = initialState, action) => {
 
 export const updateNewPostText = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const addPost = () => ({ type: ADD_POST });
+export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
