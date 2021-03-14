@@ -19,11 +19,11 @@ function App() {
           <div className='app-column__wrapper'>
             <Switch>
               <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+              <Route path='/users' render={() => <UsersContainer />} />
               <Route path='/dialogs' render={() => <DialogsContainer />} />
               <Route path='/news' render={() => <News />} />
               <Route path='/music' render={() => <Music />} />
               <Route path='/setting' render={() => <Setting />} />
-              <Route path='/users' render={() => <UsersContainer />} />
             </Switch>
           </div>
         </div>

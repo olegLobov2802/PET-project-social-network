@@ -17,7 +17,8 @@ class UsersContainer extends React.Component {
     this.props.checkIsLoading(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${this.props.currentPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${this.props.currentPage}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.checkIsLoading(false);
@@ -31,7 +32,8 @@ class UsersContainer extends React.Component {
     this.props.setCurrentPage(totalPage);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${totalPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${totalPage}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.checkIsLoading(false);
