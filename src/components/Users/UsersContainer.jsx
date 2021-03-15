@@ -11,34 +11,25 @@ import {
 import Users from "./Users";
 import * as axios from "axios";
 import Preloader from "../Preloader/Preloader";
+import { usersAPI } from "../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.checkIsLoading(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${this.props.currentPage}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        this.props.checkIsLoading(false);
-        this.props.setTotalUsersCount(response.data.totalCount);
-        this.props.setUsers(response.data.items);
-      });
+    usersAPI.getUsers(this.props.usersCount, this.props.currentPage).then((data) => {
+      this.props.checkIsLoading(false);
+      this.props.setTotalUsersCount(data.totalCount);
+      this.props.setUsers(data.items);
+    });
   }
 
   onPageChange = (totalPage) => {
     this.props.checkIsLoading(true);
     this.props.setCurrentPage(totalPage);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${totalPage}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        this.props.checkIsLoading(false);
-        this.props.setUsers(response.data.items);
-      });
+    usersAPI.getUsers(this.props.usersCount, totalPage).then((data) => {
+      this.props.checkIsLoading(false);
+      this.props.setUsers(data.items);
+    });
   };
 
   render() {
