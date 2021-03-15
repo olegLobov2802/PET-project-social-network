@@ -2,6 +2,7 @@ import classes from "./Users.module.css";
 import photo from "../../img/logo.png";
 import { NavLink } from "react-router-dom";
 import * as axios from "axios";
+import { usersAPI } from "../api/api";
 
 const Users = ({
   usersData,
@@ -41,16 +42,11 @@ const Users = ({
             {item.followed ? (
               <button
                 onClick={() => {
-                  axios
-                    .delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {
-                      withCredentials: true,
-                      headers: { "API-KEY": "d49a8798-dec3-4d6f-92f0-d0cc17fdc7e7" },
-                    })
-                    .then((response) => {
-                      if (response.data.resultCode === 0) {
-                        isUnfollow(item.id);
-                      }
-                    });
+                  usersAPI.unfollow(item.id).then((resultCode) => {
+                    if (resultCode === 0) {
+                      isUnfollow(item.id);
+                    }
+                  });
                 }}
                 className={classes.users__btn}>
                 Unfollow
@@ -58,20 +54,11 @@ const Users = ({
             ) : (
               <button
                 onClick={() => {
-                  axios
-                    .post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
-                      {},
-                      {
-                        withCredentials: true,
-                        headers: { "API-KEY": "d49a8798-dec3-4d6f-92f0-d0cc17fdc7e7" },
-                      }
-                    )
-                    .then((response) => {
-                      if (response.data.resultCode === 0) {
-                        isFollow(item.id);
-                      }
-                    });
+                  usersAPI.follow(item.id).then((resultCode) => {
+                    if (resultCode === 0) {
+                      isFollow(item.id);
+                    }
+                  });
                 }}
                 className={classes.users__btn}>
                 Follow
