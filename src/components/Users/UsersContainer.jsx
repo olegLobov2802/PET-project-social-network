@@ -7,9 +7,9 @@ import {
   setCurrentPage,
   setTotalUsersCount,
   checkIsLoading,
+  checkButtonDisabled,
 } from "../../redux/usersReducer";
 import Users from "./Users";
-import * as axios from "axios";
 import Preloader from "../Preloader/Preloader";
 import { usersAPI } from "../api/api";
 
@@ -46,6 +46,8 @@ class UsersContainer extends React.Component {
             usersCount={this.props.usersCount}
             currentPage={this.props.currentPage}
             onPageChange={this.onPageChange}
+            toogleButtonDisabled={this.props.toogleButtonDisabled}
+            checkButtonDisabled={this.props.checkButtonDisabled}
           />
         )}
       </>
@@ -60,6 +62,7 @@ const mapStateToProps = (state) => {
     usersCount: state.usersPage.usersCount,
     currentPage: state.usersPage.currentPage,
     isLoading: state.usersPage.isLoading,
+    toogleButtonDisabled: state.usersPage.toogleButtonDisabled,
   };
 };
 
@@ -70,6 +73,7 @@ const mapDispatchToProps = {
   setCurrentPage,
   setTotalUsersCount,
   checkIsLoading,
+  checkButtonDisabled,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

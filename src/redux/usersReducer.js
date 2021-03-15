@@ -4,6 +4,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const TOTAL_USERS_COUNT = "TOTAL_USERS_COUNT";
 const IS_LOADING = "IS_LOADING";
+const TOOGLE_BUTTON_DISABLED = "TOOGLE_BUTTON_DISABLED";
 
 let initialState = {
   usersData: [],
@@ -11,6 +12,7 @@ let initialState = {
   usersCount: 10,
   currentPage: 1,
   isLoading: false,
+  toogleButtonDisabled: [],
 };
 
 export let usersReducer = (state = initialState, action) => {
@@ -55,6 +57,13 @@ export let usersReducer = (state = initialState, action) => {
         ...state,
         isLoading: action.load,
       };
+    case TOOGLE_BUTTON_DISABLED:
+      return {
+        ...state,
+        toogleButtonDisabled: action.load
+          ? [...state.toogleButtonDisabled, action.userId]
+          : state.toogleButtonDisabled.filter(id => id !== action.userId)
+      }
     default:
       return state;
   }
@@ -66,3 +75,4 @@ export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const setTotalUsersCount = (usersCount) => ({ type: TOTAL_USERS_COUNT, usersCount });
 export const checkIsLoading = (load) => ({ type: IS_LOADING, load });
+export const checkButtonDisabled = (load, userId) => ({type: TOOGLE_BUTTON_DISABLED, load, userId})
