@@ -1,3 +1,5 @@
+import { usersAPI } from "../components/api/api";
+
 const IS_FOLLOW = "IS_FOLLO";
 const IS_UNFOLLOW = "IS_UNFOLLO";
 const SET_USERS = "SET_USERS";
@@ -62,17 +64,57 @@ export let usersReducer = (state = initialState, action) => {
         ...state,
         toogleButtonDisabled: action.load
           ? [...state.toogleButtonDisabled, action.userId]
-          : state.toogleButtonDisabled.filter(id => id !== action.userId)
-      }
+          : state.toogleButtonDisabled.filter((id) => id !== action.userId),
+      };
     default:
       return state;
   }
 };
 
-export const isFollow = (id) => ({ type: IS_FOLLOW, id });
-export const isUnfollow = (id) => ({ type: IS_UNFOLLOW, id });
-export const setUsers = (users) => ({ type: SET_USERS, users });
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
-export const setTotalUsersCount = (usersCount) => ({ type: TOTAL_USERS_COUNT, usersCount });
-export const checkIsLoading = (load) => ({ type: IS_LOADING, load });
-export const checkButtonDisabled = (load, userId) => ({type: TOOGLE_BUTTON_DISABLED, load, userId})
+const isFollow = (id) => ({ type: IS_FOLLOW, id });
+const isUnfollow = (id) => ({ type: IS_UNFOLLOW, id });
+const setUsers = (users) => ({ type: SET_USERS, users });
+const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+const setTotalUsersCount = (usersCount) => ({ type: TOTAL_USERS_COUNT, usersCount });
+const checkIsLoading = (load) => ({ type: IS_LOADING, load });
+const checkButtonDisabled = (load, userId) => ({
+  type: TOOGLE_BUTTON_DISABLED,
+  load,
+  userId,
+});
+
+export const getUsers = (usersCount, currentPage) => {
+  return (dispatch) => {
+    dispatch(checkIsLoading(true));
+    dispatch(setCurrentPage(currentPage));
+    usersAPI.getUsers(usersCount, currentPage).then((data) => {
+      dispatch(checkIsLoading(false));
+      dispatch(setTotalUsersCount(data.totalCount));
+      dispatch(setUsers(data.items));
+    });
+  };
+};
+
+export const follow = (itemId) => {
+  return (dispatch) => {
+    dispatch(checkButtonDisabled(true, itemId));
+    usersAPI.follow(itemId).then((resultCode) => {
+      if (resultCode === 0) {
+        dispatch(isFollow(itemId));
+      }
+      dispatch(checkButtonDisabled(false, itemId));
+    });
+  };
+};
+
+export const unfollow = (itemId) => {
+  return (dispatch) => {
+    dispatch(checkButtonDisabled(true, itemId));
+    usersAPI.unfollow(itemId).then((resultCode) => {
+      if (resultCode === 0) {
+        dispatch(isUnfollow(itemId));
+      }
+      dispatch(checkButtonDisabled(false, itemId));
+    });
+  };
+};

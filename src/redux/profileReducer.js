@@ -1,6 +1,9 @@
+import { profileAPI } from "../components/api/api";
+
 const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_PROFILE = "SET_PROFILE";
+const IS_LOADING = "IS_LOADING";
 
 let initialState = {
   postData: [
@@ -23,6 +26,7 @@ let initialState = {
   ],
   newPostText: "Hello World!",
   profile: null,
+  isLoading: false,
 };
 
 export let profileReducer = (state = initialState, action) => {
@@ -49,6 +53,11 @@ export let profileReducer = (state = initialState, action) => {
         ...state,
         profile: action.profile,
       };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.load,
+      };
     default:
       return state;
   }
@@ -56,4 +65,17 @@ export let profileReducer = (state = initialState, action) => {
 
 export const updateNewPostText = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const addPost = () => ({ type: ADD_POST });
-export const setProfile = (profile) => ({ type: SET_PROFILE, profile });
+
+const checkIsLoading = (load) => ({ type: IS_LOADING, load });
+const setProfile = (profile) => ({ type: SET_PROFILE, profile });
+
+export const getProfile = (paramsUserId) => {
+  return (dispatch) => {
+    let userId = !paramsUserId ? 2 : paramsUserId;
+    dispatch(checkIsLoading(true))
+    profileAPI.getProfile(userId).then((data) => {
+      dispatch(checkIsLoading(false))
+      dispatch(setProfile(data));
+    });
+  };
+};

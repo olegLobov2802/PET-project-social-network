@@ -19,3 +19,13 @@ export const usersAPI = {
     return instance.delete(`follow/${id}`).then((response) => response.data.resultCode);
   },
 };
+
+export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`profile/${userId}`).then((response) => response.data);
+  },
+};
+
+export const authAPI = () => {
+  return instance.get(`auth/me`).then((response) => response.data);
+};

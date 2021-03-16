@@ -1,35 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  isFollow,
-  isUnfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  checkIsLoading,
-  checkButtonDisabled,
-} from "../../redux/usersReducer";
+import { getUsers, follow, unfollow } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import { usersAPI } from "../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.checkIsLoading(true);
-    usersAPI.getUsers(this.props.usersCount, this.props.currentPage).then((data) => {
-      this.props.checkIsLoading(false);
-      this.props.setTotalUsersCount(data.totalCount);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsers(this.props.usersCount, this.props.currentPage);
   }
 
   onPageChange = (totalPage) => {
-    this.props.checkIsLoading(true);
-    this.props.setCurrentPage(totalPage);
-    usersAPI.getUsers(this.props.usersCount, totalPage).then((data) => {
-      this.props.checkIsLoading(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsers(this.props.usersCount, totalPage);
   };
 
   render() {
@@ -40,14 +21,13 @@ class UsersContainer extends React.Component {
         ) : (
           <Users
             usersData={this.props.usersData}
-            isFollow={this.props.isFollow}
-            isUnfollow={this.props.isUnfollow}
             totalUsersCount={this.props.totalUsersCount}
             usersCount={this.props.usersCount}
             currentPage={this.props.currentPage}
             onPageChange={this.onPageChange}
             toogleButtonDisabled={this.props.toogleButtonDisabled}
-            checkButtonDisabled={this.props.checkButtonDisabled}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
           />
         )}
       </>
@@ -61,19 +41,15 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     usersCount: state.usersPage.usersCount,
     currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading,
     toogleButtonDisabled: state.usersPage.toogleButtonDisabled,
+    isLoading: state.usersPage.isLoading,
   };
 };
 
 const mapDispatchToProps = {
-  isFollow,
-  isUnfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  checkIsLoading,
-  checkButtonDisabled,
+  getUsers,
+  follow,
+  unfollow,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

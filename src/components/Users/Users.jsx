@@ -1,17 +1,15 @@
 import classes from "./Users.module.css";
 import photo from "../../img/logo.png";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../api/api";
 
 const Users = ({
   usersData,
-  isFollow,
-  isUnfollow,
+  follow,
+  unfollow,
   onPageChange,
   totalUsersCount,
   usersCount,
   currentPage,
-  checkButtonDisabled,
   toogleButtonDisabled,
 }) => {
   let pagesCount = Math.ceil(totalUsersCount / usersCount);
@@ -44,13 +42,7 @@ const Users = ({
               <button
                 disabled={toogleButtonDisabled.some((id) => id === item.id)}
                 onClick={() => {
-                  checkButtonDisabled(true, item.id);
-                  usersAPI.unfollow(item.id).then((resultCode) => {
-                    if (resultCode === 0) {
-                      isUnfollow(item.id);
-                    }
-                    checkButtonDisabled(false, item.id);
-                  });
+                  unfollow(item.id);
                 }}
                 className={classes.users__btn}>
                 Unfollow
@@ -59,13 +51,7 @@ const Users = ({
               <button
                 disabled={toogleButtonDisabled.some((id) => id === item.id)}
                 onClick={() => {
-                  checkButtonDisabled(true, item.id);
-                  usersAPI.follow(item.id).then((resultCode) => {
-                    if (resultCode === 0) {
-                      isFollow(item.id);
-                    }
-                    checkButtonDisabled(false, item.id);
-                  });
+                  follow(item.id);
                 }}
                 className={classes.users__btn}>
                 Follow
