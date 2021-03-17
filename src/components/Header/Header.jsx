@@ -9,7 +9,7 @@ const Header = ({ authData }) => {
       <div className={classes.container}>
         <div className={classes.header__row}>
           <img src={logo} alt='#' className={classes.header__logo} />
-          <div>{!authData.isAuthorized ? <NavLink to='/auth'>login</NavLink> : authData.email}</div>
+          <div>{!authData.isAuthorized ? <NavLink to='/login'>login</NavLink> : authData.email}</div>
         </div>
       </div>
     </header>
