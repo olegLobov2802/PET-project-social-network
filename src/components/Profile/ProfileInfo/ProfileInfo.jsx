@@ -3,7 +3,7 @@ import ava from "../../../img/photo.jpg";
 import classes from "./ProfileInfo.module.css";
 import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ({ profile, status }) => {
+const ProfileInfo = ({ profile, profileStatus, updateStatus }) => {
   let contacts = profile.contacts;
   let contactsList = [];
   for (let item in contacts) {
@@ -19,7 +19,7 @@ const ProfileInfo = ({ profile, status }) => {
         <div className={classes.profile__ava}>
           <img src={profile.photos.small || ava} alt="" />
         </div>
-        <ProfileStatus status={"status"} />
+        <ProfileStatus status={profileStatus} updateStatus={updateStatus} />
       </div>
 
       <ul className={classes.profile__descr}>
