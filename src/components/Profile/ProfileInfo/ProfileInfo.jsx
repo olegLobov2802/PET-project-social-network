@@ -1,8 +1,9 @@
 import React from "react";
 import ava from "../../../img/photo.jpg";
 import classes from "./ProfileInfo.module.css";
+import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ({ profile }) => {
+const ProfileInfo = ({ profile, status }) => {
   let contacts = profile.contacts;
   let contactsList = [];
   for (let item in contacts) {
@@ -14,12 +15,17 @@ const ProfileInfo = ({ profile }) => {
 
   return (
     <div className={classes.profile__info}>
-      <div className={classes.profile__ava}>
-        <img src={profile.photos.small || ava} alt='' />
+      <div>
+        <div className={classes.profile__ava}>
+          <img src={profile.photos.small || ava} alt="" />
+        </div>
+        <ProfileStatus status={"status"} />
       </div>
 
       <ul className={classes.profile__descr}>
-        <li className={(classes.profile__name, classes.profile__item)}>{profile.fullName}</li>
+        <li className={(classes.profile__name, classes.profile__item)}>
+          {profile.fullName}
+        </li>
         <li className={(classes.profile__data, classes.profile__item)}>
           Data of Birth: <span>6 june</span>
         </li>

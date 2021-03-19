@@ -8,7 +8,7 @@ const Profile = ({ profile }) => {
     <div>
       <ProfileBg />
 
-      <ProfileInfo profile={profile} />
+      <ProfileInfo profile={profile} status={"status"} />
 
       <ProfilePostContainer />
     </div>

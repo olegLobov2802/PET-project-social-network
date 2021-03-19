@@ -32,10 +32,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-// let WithRouterURL = withRouter(AuthRedirectComponent);
-// export default connect(mapStateToProps, { getProfile })(WithRouterURL);
-
 export default compose(
   connect(mapStateToProps, { getProfile }),
   withRouter,
