@@ -10,8 +10,7 @@ let initialState = {
   postData: [
     {
       id: 1,
-      messages:
-        "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      messages: "Quis, atque. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       like: 3,
     },
     {
@@ -71,12 +70,8 @@ export let profileReducer = (state = initialState, action) => {
   }
 };
 
-export const updateNewPostText = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  text,
-});
+export const updateNewPostText = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const addPost = () => ({ type: ADD_POST });
-
 const checkIsLoading = (load) => ({ type: IS_LOADING, load });
 const setProfile = (profile) => ({ type: SET_PROFILE, profile });
 const setStatus = (statusText) => ({ type: SET_STATUS, statusText });

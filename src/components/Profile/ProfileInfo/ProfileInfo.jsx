@@ -23,9 +23,7 @@ const ProfileInfo = ({ profile, profileStatus, updateStatus }) => {
       </div>
 
       <ul className={classes.profile__descr}>
-        <li className={(classes.profile__name, classes.profile__item)}>
-          {profile.fullName}
-        </li>
+        <li className={(classes.profile__name, classes.profile__item)}>{profile.fullName}</li>
         <li className={(classes.profile__data, classes.profile__item)}>
           Data of Birth: <span>6 june</span>
         </li>

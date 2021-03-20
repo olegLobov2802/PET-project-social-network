@@ -1,10 +1,9 @@
 import React from "react";
 
 class ProfileStatus extends React.Component {
-
   state = {
     editMode: false,
-    status: this.props.status
+    status: this.props.status,
   };
 
   activateEditMode = () => {
@@ -22,16 +21,24 @@ class ProfileStatus extends React.Component {
 
   onStatusChange = (e) => {
     this.setState({
-      status: e.currentTarget.value
-    })
+      status: e.currentTarget.value,
+    });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status,
+      });
+    }
+  }
 
   render() {
     return (
       <div>
         {!this.state.editMode ? (
           <div>
-            <span onClick={this.activateEditMode}>{this.props.status || 'No status'}</span>
+            <span onClick={this.activateEditMode}>{this.props.status || "No status"}</span>
           </div>
         ) : (
           <div>
